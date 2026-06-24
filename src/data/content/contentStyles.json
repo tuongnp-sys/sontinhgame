@@ -1,0 +1,37 @@
+{
+  "palette": {
+    "sonTinh": "#1B7F4A",
+    "thuyTinh": "#2980B9",
+    "ngocHoa": "#E17055",
+    "king": "#9B59B6",
+    "quote": "#C0392B",
+    "body": "#2D3436",
+    "bodyEn": "#1A5276",
+    "vocab": "#8E44AD",
+    "sectionHeading": "#E17055",
+    "title": "#1B7F4A",
+    "poemTitle": "#9B59B6",
+    "poemLineVn": "#1B7F4A",
+    "poemLineEn": "#2980B9"
+  },
+  "fonts": {
+    "title": "system-ui, Georgia, serif",
+    "body": "Georgia, system-ui, serif",
+    "ui": "system-ui, sans-serif"
+  },
+  "sizes": {
+    "legendTitle": "16px",
+    "sectionHeading": "14px",
+    "body": "13px",
+    "vocab": "11px",
+    "poemTitle": "14px",
+    "poemLine": "12px"
+  },
+  "highlights": [
+    { "vn": "Sơn Tinh", "en": "Son Tinh", "accent": "sonTinh" },
+    { "vn": "Thủy Tinh", "en": "Thuy Tinh", "accent": "thuyTinh" },
+    { "vn": "Ngọc Hoa", "en": "Ngoc Hoa", "accent": "ngocHoa" },
+    { "vn": "Vua Hùng", "en": "Hung King", "accent": "king" },
+    { "vn": "công chúa Ngọc Hoa", "en": "Princess Ngoc Hoa", "accent": "ngocHoa" }
+  ]
+}

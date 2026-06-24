@@ -1,0 +1,69 @@
+{
+  "title": {
+    "vn": "Tóm tắt Truyền thuyết Sơn Tinh — Thủy Tinh",
+    "en": "Son Tinh & Thuy Tinh — Legend Summary"
+  },
+  "intro": {
+    "vn": "Cốt truyện siêu ngắn, dễ thuộc — sống động như một trận chiến điện ảnh.",
+    "en": "A short, memorable tale — vivid as a cinematic battle."
+  },
+  "sections": [
+    {
+      "heading": {
+        "vn": "1. Ngày Hội Kén Rể",
+        "en": "1. The Bride-Choosing Festival"
+      },
+      "body": {
+        "vn": "Vua Hùng thứ 18 có công chúa Ngọc Hoa xinh đẹp. Vua mở hội kén rể. Hai chàng trai thần thông quảng đại cùng đến cầu hôn:\n\n• Sơn Tinh — Chúa vùng non cao, vẫy tay hóa núi thành thành.\n• Thủy Tinh — Chúa vùng nước thẳm, gọi gió gió đến, hô mưa mưa về.",
+        "en": "The 18th Hung King had the beautiful Princess Ngoc Hoa. He held a bride-choosing festival. Two mighty suitors came to ask for her hand:\n\n• Son Tinh — Lord of the high mountains; at a wave of his hand, hills become ramparts.\n• Thuy Tinh — Lord of the deep waters; he calls the wind and summons the rain."
+      },
+      "vocab": [
+        { "vn": "kén rể", "en": "bride-choosing festival" },
+        { "vn": "thần thông quảng đại", "en": "vast supernatural powers" }
+      ]
+    },
+    {
+      "heading": {
+        "vn": "2. Thách Cưới Độc Đắc",
+        "en": "2. The Wedding Gifts"
+      },
+      "body": {
+        "vn": "Vua Hùng phân vân, bèn ra điều kiện sính lễ: voi chín ngà, gà chín cựa, ngựa chín hồng mao. Ai đem đến trước sẽ được rước dâu.",
+        "en": "The king could not choose easily, so he set a condition: wedding gifts of nine-tusk elephants, nine-spur roosters, and nine-crimson-maned horses. Whoever brought them first would win the bride."
+      },
+      "vocab": [
+        { "vn": "sính lễ", "en": "wedding gifts / betrothal offerings" },
+        { "vn": "rước dâu", "en": "to escort the bride home" }
+      ]
+    },
+    {
+      "heading": {
+        "vn": "3. Đại Chiến Kinh Thiên Động Địa",
+        "en": "3. The Earth-Shaking Battle"
+      },
+      "body": {
+        "vn": "Sơn Tinh tìm được sính lễ quý hiếm trước, rước Ngọc Hoa về núi.\n\nThủy Tinh đến muộn, đùng đùng nổi giận, dâng nước đánh Sơn Tinh. Nước ngập ruộng đồng, dâng lên tận lưng chừng núi.\n\nSơn Tinh không hề nao núng, bốc từng quả đồi, dựng thành lũy đất ngăn dòng lũ. Nước dâng cao bao nhiêu, núi cao lên bấy nhiêu.",
+        "en": "Son Tinh found the rare gifts first and escorted Ngoc Hoa to the mountain.\n\nThuy Tinh arrived too late, flew into a rage, and raised the waters against Son Tinh. Floods swallowed the fields and climbed halfway up the peaks.\n\nSon Tinh did not waver. He lifted hill after hill, building earthen walls to block the flood. However high the water rose, the mountain rose higher still."
+      },
+      "vocab": [
+        { "vn": "dâng nước", "en": "to raise the floodwaters" },
+        { "vn": "lưng chừng núi", "en": "midway up the mountain" },
+        { "vn": "nao núng", "en": "to waver / lose heart" }
+      ]
+    },
+    {
+      "heading": {
+        "vn": "4. Kết Cục Của Mối Thù",
+        "en": "4. The End of the Grudge"
+      },
+      "body": {
+        "vn": "Thủy Tinh kiệt sức, chịu thua, rút quân về. Từ đó, năm nào Thủy Tinh cũng dâng nước đánh Sơn Tinh nhưng đều thất bại.",
+        "en": "Thuy Tinh exhausted his strength, admitted defeat, and withdrew. Ever since, each year he floods the land to strike at Son Tinh — and each year he fails."
+      },
+      "vocab": [
+        { "vn": "kiệt sức", "en": "exhausted / spent of strength" },
+        { "vn": "mối thù", "en": "a lasting grudge" }
+      ]
+    }
+  ]
+}

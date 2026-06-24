@@ -1,0 +1,54 @@
+{
+  "title": {
+    "vn": "Nỗi Lòng Ngọc Hoa",
+    "en": "Ngoc Hoa's Heart"
+  },
+  "stanzas": [
+    {
+      "lines": [
+        { "vn": "Ta là công chúa Ngọc Hoa,", "en": "I am Princess Ngoc Hoa,", "accent": "ngocHoa" },
+        { "vn": "Sống nơi cung điện lụa là vàng son.", "en": "Dwelling in silken halls adorned with gold." },
+        { "vn": "Tuổi xuân phơi phới trăng tròn,", "en": "Youth in full bloom beneath the round bright moon," },
+        { "vn": "Cha ta kén rể cho con đẹp lòng.", "en": "My father chose a husband to please my heart." }
+      ]
+    },
+    {
+      "lines": [
+        { "vn": "Sơn Tinh chúa núi oai phong,", "en": "Son Tinh, lord of mountains, proud and strong,", "accent": "sonTinh" },
+        { "vn": "Thủy Tinh chúa nước thần thông bụi hồng.", "en": "Thuy Tinh, lord of waters, spirit of the mist.", "accent": "thuyTinh" },
+        { "vn": "Lễ nghi vua phán một dòng:", "en": "The king decreed with a single line:", "accent": "king" },
+        { "vn": "\"Voi ngà, gà cựa\" — thầm mong ai vầy?", "en": "\"Elephant tusks, rooster spurs\" — who would answer?", "accent": "quote" }
+      ]
+    },
+    {
+      "lines": [
+        { "vn": "Sơn Tinh sính lễ trao tay,", "en": "Son Tinh brought gifts and won my hand,", "accent": "sonTinh" },
+        { "vn": "Rước ta về núi ngàn mây đón chào.", "en": "Carrying me home where cloud-wrapped peaks welcomed us." },
+        { "vn": "Thủy Tinh đến muộn, nghẹn ngào,", "en": "Thuy Tinh came too late, choked with grief,", "accent": "thuyTinh" },
+        { "vn": "Nổi cơn thịnh nộ, dâng trào bão giông.", "en": "He raged in fury, raising storms that roared." }
+      ]
+    },
+    {
+      "lines": [
+        { "vn": "Mưa tuôn ngập cả ruộng đồng,", "en": "Rain poured and flooded every field and plain," },
+        { "vn": "Nước dâng lên vách, đòi chồng trả ta.", "en": "Waters climbed the cliffs — demanding me again." },
+        { "vn": "Sơn Tinh vững chãi như hoa,", "en": "Son Tinh stood firm as steadfast mountain flower,", "accent": "sonTinh" },
+        { "vn": "Nước cao, núi mọc, phong ba chẳng sờn.", "en": "As waters rose, the mountain grew — unbowed by wind and shower." }
+      ]
+    },
+    {
+      "lines": [
+        { "vn": "Thủy Tinh đuối sức, giận hờn,", "en": "Thuy Tinh, spent and bitter in defeat,", "accent": "thuyTinh" },
+        { "vn": "Rút quân biển thẳm, sóng vờn tan mau.", "en": "Withdrew his hosts to where the deep tides meet." },
+        { "vn": "Theo chồng về phía ngàn dâu,", "en": "I followed my husband toward the mulberry shade," },
+        { "vn": "Tình sâu nghĩa nặng, bạc đầu lòng son.", "en": "Love deep, vow heavy — though our hair may fade." }
+      ]
+    },
+    {
+      "lines": [
+        { "vn": "Mỗi năm mưa bão héo mòn,", "en": "Each year when rains and storms wear the land away," },
+        { "vn": "Thương dân lũ lụt, lòng còn ngẩn ngơ.", "en": "My heart still grieves for those the floods betray." }
+      ]
+    }
+  ]
+}

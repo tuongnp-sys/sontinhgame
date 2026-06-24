@@ -1,0 +1,35 @@
+{
+  "basePath": "audio",
+  "files": {
+    "menu": "bgm_menu.mp3",
+    "gameplay": "bgm_gameplay.mp3",
+    "victory": "bgm_victory.mp3",
+    "defeat": "bgm_defeat.mp3",
+    "ngochoa": "vox_ngochoa.mp3",
+    "rain": "sfx_rain_loop.m4a"
+  },
+  "tracks": {
+    "menu": "bgm_menu",
+    "gameplay": "bgm_gameplay",
+    "victory": "bgm_victory",
+    "defeat": "bgm_defeat",
+    "ngochoa": "vox_ngochoa",
+    "rain": "sfx_rain_loop"
+  },
+  "loop": {
+    "menu": true,
+    "gameplay": true,
+    "victory": false,
+    "defeat": false,
+    "ngochoa": false,
+    "rain": true
+  },
+  "volume": {
+    "menu": 0.45,
+    "gameplay": 0.5,
+    "victory": 0.65,
+    "defeat": 0.6,
+    "ngochoa": 0.85,
+    "rain": 0.55
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "ink_attack": {
+    "id": "ink_attack",
+    "type": "ink",
+    "minStress": 0.3,
+    "cooldownMs": 20000
+  },
+  "flash_flood": {
+    "id": "flash_flood",
+    "type": "flash_flood",
+    "minStress": 0.55,
+    "cooldownMs": 25000
+  },
+  "poison_burst": {
+    "id": "poison_burst",
+    "type": "poison_burst",
+    "minStress": 0.4,
+    "cooldownMs": 12000
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "chicken": {
+    "id": "chicken",
+    "name": "Nine-Spur Rooster",
+    "description": "Pecks small sea monsters"
+  },
+  "elephant": {
+    "id": "elephant",
+    "name": "Nine-Tusk Elephant",
+    "description": "Stuns all enemies"
+  },
+  "horse": {
+    "id": "horse",
+    "name": "Crimson Nine-Mane Horse",
+    "description": "Restores mountain height"
+  }
+}
