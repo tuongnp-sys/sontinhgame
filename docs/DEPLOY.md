@@ -31,11 +31,11 @@ git add .
 git status
 git commit -m "Initial commit: Son Tinh H5 game"
 git branch -M main
-git remote add origin https://github.com/TEN_BAN/sontinhgame.git
+git remote add origin https://github.com/tuongnp-sys/sontinhgame.git
 git push -u origin main
 ```
 
-Thay `TEN_BAN` bằng username GitHub của bạn.
+Thay `TEN_BAN` bằng username GitHub của bạn (repo hiện tại: **tuongnp-sys/sontinhgame**).
 
 ## 3. Vercel
 
