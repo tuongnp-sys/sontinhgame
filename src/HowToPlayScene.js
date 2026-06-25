@@ -2,10 +2,12 @@ import Phaser from 'phaser';
 import { audioManager } from './audio/AudioManager.js';
 import { bgmController } from './audio/BgmController.js';
 import { SceneryView } from './systems/SceneryView.js';
-import { createArcadeTitle, createPillButton } from './ui/phaserUi.js';
+import { createMuteToggle } from './ui/MuteToggle.js';
+import { HowToPlayPanel } from './ui/HowToPlayPanel.js';
+import { getExpandCropInsets, safeTop, safeRightX } from './ui/safeHud.js';
 
 /**
- * HowToPlayScene — hướng dẫn đồng bộ với mechanics thực tế.
+ * HowToPlayScene — bilingual guide + back + mute.
  */
 export class HowToPlayScene extends Phaser.Scene {
   constructor() {
@@ -22,66 +24,58 @@ export class HowToPlayScene extends Phaser.Scene {
 
     this.scenery = new SceneryView(this, w, h, h * 0.75);
 
-    this.add
-      .rectangle(w / 2, h / 2, w - 20, h * 0.68, 0xffffff, 0.88)
-      .setStrokeStyle(3, 0xfdcb6e);
+    const insets = getExpandCropInsets(this.scale);
+    const topY = safeTop(28, insets);
+    const muteX = safeRightX(22, w, insets);
 
-    createArcadeTitle(this, w / 2, 58, 'HOW TO PLAY', null);
+    this._buildBackButton(w, topY);
+    this.muteToggle = createMuteToggle(this, muteX, topY, 30);
 
-    const lines = [
-      'GOAL — Water rises constantly. Keep the mountain',
-      'above the flood to protect Princess Ngoc Hoa!',
-      '',
-      'RHYTHM — TAP notes at the golden ring:',
-      '  Gold = raise mountain',
-      '  Brown = bonus height (+extra)',
-      '  Orange = attack (+small boost)',
-      '  Purple = HOLD: press & keep finger down!',
-      '  Green (X) = POISON — do NOT tap!',
-      '',
-      'BALANCE BAR (below ring):',
-      '  Red S = Son Tinh | Blue T = Thuy Tinh',
-      '',
-      'COMBO SPIRIT BEASTS:',
-      '  x10 Rooster | x25 Elephant | x50 Horse',
-      '',
-      'Blue sea beasts climb the flood (pressure only).',
-      'Set your name on the menu to save personal best.',
-      'Ink blind & flash floods appear in later rounds.',
-      '',
-      'WIN: survive the timer with mountain above water.',
-      '  Level 1: 90s  |  Level 2 & 3: 120s',
-    ];
-
-    this.add
-      .text(w / 2, 108, lines.join('\n'), {
-        fontFamily: 'system-ui, sans-serif',
-        fontSize: '11px',
-        color: '#2D3436',
-        align: 'center',
-        lineSpacing: 3,
-      })
-      .setOrigin(0.5, 0);
-
-    createPillButton(
-      this,
-      w / 2,
-      h - 72,
-      220,
-      50,
-      this.autoStart ? 'START!' : 'BACK',
-      async () => {
-        await audioManager.unlock({ proceduralMusic: !bgmController.isTrackReady('gameplay') });
-        if (this.autoStart) {
-          this.scene.start('GameScene', { fromMenu: true });
-        } else {
-          this.scene.start('MenuScene');
-        }
-      },
-      !this.autoStart
-    );
+    this.panel = new HowToPlayPanel(this, w, h, {
+      autoStart: this.autoStart,
+      onBack: () => this.scene.start('MenuScene'),
+      onStart: () => this._goPlay(),
+    });
 
     bgmController.play(this, 'menu');
+  }
+
+  /**
+   * @param {number} w
+   * @param {number} topY
+   */
+  _buildBackButton(w, topY) {
+    const y = topY;
+    this.backBg = this.add
+      .rectangle(52, y, 88, 32, 0xffffff, 0.88)
+      .setStrokeStyle(2, 0xe17055, 0.9)
+      .setInteractive({ useHandCursor: true })
+      .setDepth(30);
+
+    this.backLabel = this.add
+      .text(52, y, '← BACK', {
+        fontFamily: 'system-ui, sans-serif',
+        fontSize: '12px',
+        fontStyle: 'bold',
+        color: '#C0392B',
+      })
+      .setOrigin(0.5)
+      .setDepth(31);
+
+    const goBack = () => this.scene.start('MenuScene');
+    this.backBg.on('pointerdown', goBack);
+    this.backLabel.setInteractive({ useHandCursor: true });
+    this.backLabel.on('pointerdown', goBack);
+    this.backBg.on('pointerover', () => this.backBg.setFillStyle(0xffffff, 1));
+    this.backBg.on('pointerout', () => this.backBg.setFillStyle(0xffffff, 0.88));
+  }
+
+  async _goPlay() {
+    await audioManager.unlock({ proceduralMusic: !bgmController.isTrackReady('gameplay') });
+    if (this.sound.context?.state === 'suspended') {
+      await this.sound.context.resume();
+    }
+    this.scene.start('GameScene', { fromMenu: true });
   }
 
   update(_t, delta) {
@@ -89,6 +83,8 @@ export class HowToPlayScene extends Phaser.Scene {
   }
 
   shutdown() {
+    this.panel?.destroy();
+    this.panel = null;
     this.scenery?.destroy();
     if (!this.scene.isActive('MenuScene')) bgmController.stop();
   }

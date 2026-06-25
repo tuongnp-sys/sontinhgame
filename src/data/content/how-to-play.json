@@ -1,0 +1,62 @@
+{
+  "title": {
+    "vn": "Cách chơi",
+    "en": "How to Play"
+  },
+  "intro": {
+    "vn": "Giữ núi trên nước lũ, bảo vệ Mỹ Nương Ngọc Hoa — chạm đúng nhịp để chiến thắng.",
+    "en": "Keep the mountain above the flood and protect Princess Ngoc Hoa — tap in rhythm to win."
+  },
+  "sections": [
+    {
+      "heading": {
+        "vn": "Mục tiêu",
+        "en": "Goal"
+      },
+      "body": {
+        "vn": "Nước dâng liên tục. Giữ khoảng cách an toàn giữa đỉnh núi và mặt nước.\nNếu nước tràn — Thủy Tinh thắng.\nSống đủ thời gian với núi còn trên nước — Sơn Tinh thắng.",
+        "en": "Water rises constantly. Keep a safe gap between the mountain peak and the water.\nIf the flood reaches the princess — Thuy Tinh wins.\nSurvive the timer with the mountain still above water — Son Tinh wins."
+      }
+    },
+    {
+      "heading": {
+        "vn": "Nhịp điệu — vòng vàng",
+        "en": "Rhythm — golden ring"
+      },
+      "body": {
+        "vn": "Chạm khi nốt chạm vòng vàng giữa màn hình:\n• Vàng — nâng núi\n• Nâu — thưởng thêm độ cao\n• Cam — tấn công (+nhỏ)\n• Tím — GIỮ ngón trên màn hình\n• Xanh (X) — ĐỘC: không chạm!",
+        "en": "Tap when notes reach the golden ring:\n• Gold — raise the mountain\n• Brown — bonus height\n• Orange — attack (+small boost)\n• Purple — HOLD finger down\n• Green (X) — POISON: do not tap!"
+      }
+    },
+    {
+      "heading": {
+        "vn": "Thanh cân bằng",
+        "en": "Balance bar"
+      },
+      "body": {
+        "vn": "Ngay dưới vòng vàng:\nĐỏ S = Sơn Tinh đang lợi thế\nXanh T = Thủy Tinh đang áp lực",
+        "en": "Below the golden ring:\nRed S = Son Tinh leads\nBlue T = Thuy Tinh pressure"
+      }
+    },
+    {
+      "heading": {
+        "vn": "Combo & linh thú",
+        "en": "Combo & spirit beasts"
+      },
+      "body": {
+        "vn": "Combo x10 — Gà chín cựa (làm chậm nước)\nCombo x25 — Voi chín ngà (đóng băng lũ)\nCombo x50 — Mã chín hồng mao (hồi núi)",
+        "en": "Combo x10 — Nine-spur rooster (slows the flood)\nCombo x25 — Nine-tusk elephant (freezes water)\nCombo x50 — Crimson horse (restores the mountain)"
+      }
+    },
+    {
+      "heading": {
+        "vn": "Khác",
+        "en": "More"
+      },
+      "body": {
+        "vn": "Cá xanh bơi lên — áp lực hình ảnh, không cần chạm.\nNhập tên ở menu để lưu thành tích cá nhân.\nMực che mắt & lũ quét ở vòng sau.\nLevel 1: 90 giây | Level 2 & 3: 120 giây.",
+        "en": "Blue sea beasts — visual pressure only.\nSet your name on the menu to save personal best.\nInk blind & flash floods in later rounds.\nLevel 1: 90 seconds | Level 2 & 3: 120 seconds."
+      }
+    }
+  ]
+}

@@ -251,3 +251,83 @@ export function buildPoemBody(scene, x, y, maxWidth, poemData, mode) {
 
   return { container, height: cy - y };
 }
+
+/**
+ * @param {Phaser.Scene} scene
+ * @param {number} x
+ * @param {number} y
+ * @param {number} maxWidth
+ * @param {import('../data/content/how-to-play.json')} howToData
+ * @param {'vn'|'en'|'both'} mode
+ * @returns {{ container: Phaser.GameObjects.Container, height: number }}
+ */
+export function buildHowToPlayBody(scene, x, y, maxWidth, howToData, mode) {
+  const container = scene.add.container(0, 0);
+  let cy = y;
+
+  const introText =
+    mode === 'both'
+      ? `${howToData.intro.vn}\n${howToData.intro.en}`
+      : howToData.intro[mode === 'vn' ? 'vn' : 'en'];
+  const intro = scene.add.text(x, cy, introText, {
+    fontFamily: styles.fonts.body,
+    fontSize: styles.sizes.body,
+    fontStyle: 'italic',
+    color: styles.palette.bodyEn,
+    wordWrap: { width: maxWidth },
+    lineSpacing: 6,
+  });
+  container.add(intro);
+  cy += intro.height + 14;
+
+  for (const section of howToData.sections) {
+    if (mode === 'both') {
+      const hVn = scene.add.text(x, cy, section.heading.vn, {
+        fontFamily: styles.fonts.title,
+        fontSize: styles.sizes.sectionHeading,
+        fontStyle: 'bold',
+        color: styles.palette.sectionHeading,
+        wordWrap: { width: maxWidth },
+      });
+      container.add(hVn);
+      cy += hVn.height + 4;
+      const hEn = scene.add.text(x, cy, section.heading.en, {
+        fontFamily: styles.fonts.body,
+        fontSize: '12px',
+        fontStyle: 'italic',
+        color: styles.palette.bodyEn,
+        wordWrap: { width: maxWidth },
+      });
+      container.add(hEn);
+      cy += hEn.height + 6;
+    } else {
+      const lang = mode === 'vn' ? 'vn' : 'en';
+      const heading = scene.add.text(x, cy, section.heading[lang], {
+        fontFamily: styles.fonts.title,
+        fontSize: styles.sizes.sectionHeading,
+        fontStyle: 'bold',
+        color: styles.palette.sectionHeading,
+        wordWrap: { width: maxWidth },
+      });
+      container.add(heading);
+      cy += heading.height + 8;
+    }
+
+    const langs = mode === 'both' ? ['vn', 'en'] : [mode === 'vn' ? 'vn' : 'en'];
+    for (const lang of langs) {
+      const { container: bodyBlock, height: bodyH } = buildHighlightedParagraph(
+        scene,
+        x,
+        cy,
+        maxWidth,
+        section.body[lang],
+        lang,
+        { fontSize: mode === 'both' && lang === 'en' ? '11px' : styles.sizes.body }
+      );
+      container.add(bodyBlock);
+      cy += bodyH + (mode === 'both' && lang === 'vn' ? 4 : 10);
+    }
+  }
+
+  return { container, height: cy - y };
+}

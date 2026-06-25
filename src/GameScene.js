@@ -17,6 +17,7 @@ import { LightningView } from './systems/LightningView.js';
 import { CharmThrowView } from './systems/CharmThrowView.js';
 import { BattlefieldCamera } from './systems/BattlefieldCamera.js';
 import { createMuteToggle } from './ui/MuteToggle.js';
+import { getExpandCropInsets, safeTop, safeRightX } from './ui/safeHud.js';
 
 const NOTE_FRAME = {
   earth: 'note_earth',
@@ -618,17 +619,83 @@ export class GameScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setAlpha(0);
 
-    this.pauseBtn = this.add
-      .text(w - 16, 68, 'II', {
-        fontFamily: 'Arial, sans-serif',
-        fontSize: '16px',
-        color: '#8899aa',
-      })
-      .setOrigin(1, 0)
-      .setInteractive({ useHandCursor: true });
-    this.pauseBtn.on('pointerdown', () => this._togglePause());
+    this._buildHudControls(w);
 
-    this.muteToggle = createMuteToggle(this, w - 22, 96, 16);
+    this.scale.on(Phaser.Scale.Events.RESIZE, this._layoutSafeHud, this);
+    this._layoutSafeHud();
+  }
+
+  /**
+   * @param {number} w
+   */
+  _buildHudControls(w) {
+    const mkPill = (label, strokeColor, textColor, onClick) => {
+      const bg = this.add
+        .rectangle(0, 0, 64, 30, 0xffffff, 0.93)
+        .setStrokeStyle(2, strokeColor, 1)
+        .setInteractive({ useHandCursor: true })
+        .setDepth(26);
+      const txt = this.add
+        .text(0, 0, label, {
+          fontFamily: 'system-ui, sans-serif',
+          fontSize: '11px',
+          fontStyle: 'bold',
+          color: textColor,
+        })
+        .setOrigin(0.5)
+        .setDepth(27);
+      const fire = () => {
+        if (this._gameEnded) return;
+        onClick();
+      };
+      bg.on('pointerdown', fire);
+      txt.setInteractive({ useHandCursor: true });
+      txt.on('pointerdown', fire);
+      bg.on('pointerover', () => bg.setFillStyle(0xffffff, 1));
+      bg.on('pointerout', () => bg.setFillStyle(0xffffff, 0.93));
+      return { bg, txt };
+    };
+
+    const pause = mkPill('PAUSE', 0x1b7f4a, '#1B7F4A', () => this._togglePause());
+    this.pauseBtnBg = pause.bg;
+    this.pauseBtnLabel = pause.txt;
+
+    const stop = mkPill('STOP', 0xe17055, '#C0392B', () => this._exitToMenu());
+    this.stopBtnBg = stop.bg;
+    this.stopBtnLabel = stop.txt;
+
+    this.muteToggle = createMuteToggle(this, 0, 0, 26);
+  }
+
+  _layoutSafeHud() {
+    const w = this.cameras.main.width;
+    const insets = getExpandCropInsets(this.scale);
+    const rowY = safeTop(16, insets);
+    const pauseX = safeRightX(8, w, insets);
+    const stopX = safeRightX(78, w, insets);
+    const muteX = safeRightX(22, w, insets);
+    const muteY = safeTop(52, insets);
+
+    this.pauseBtnBg?.setPosition(pauseX, rowY);
+    this.pauseBtnLabel?.setPosition(pauseX, rowY);
+    this.stopBtnBg?.setPosition(stopX, rowY);
+    this.stopBtnLabel?.setPosition(stopX, rowY);
+    this.muteToggle?.root?.setPosition(muteX, muteY);
+  }
+
+  _exitToMenu() {
+    if (this._gameEnded) return;
+    if (this.pauseGroup?.visible) this.pauseGroup.setVisible(false);
+    if (this.controller?.rhythm.isHolding()) {
+      this._applyHitResult(this.controller.handleHoldRelease());
+    }
+    setUserPaused(false);
+    exitSystemPause();
+    platform.gameplayStop();
+    bgmController.stop();
+    audioManager.stop();
+    setGamePhase('MENU');
+    this.scene.start('MenuScene');
   }
 
   /**
@@ -673,13 +740,7 @@ export class GameScene extends Phaser.Scene {
       this.muteLabel.setText(`Sound: ${loadMutedPreference() ? 'OFF' : 'ON'}`);
       this.muteToggle?.refresh();
     });
-    menuBtn.on('pointerdown', () => {
-      platform.gameplayStop();
-      bgmController.stop();
-      audioManager.stop();
-      setGamePhase('MENU');
-      this.scene.start('MenuScene');
-    });
+    menuBtn.on('pointerdown', () => this._exitToMenu());
   }
 
   _togglePause(force) {
@@ -914,7 +975,10 @@ export class GameScene extends Phaser.Scene {
     this.laneLine?.setVisible(false);
     this.phaseBanner?.setVisible(false);
     this.actBanner?.setVisible(false);
-    this.pauseBtn?.setVisible(false);
+    this.pauseBtnBg?.setVisible(false);
+    this.pauseBtnLabel?.setVisible(false);
+    this.stopBtnBg?.setVisible(false);
+    this.stopBtnLabel?.setVisible(false);
     this.muteToggle?.root.setVisible(false);
     this.feedbackText?.setVisible(false);
     this.gapBarBg?.setVisible(false);
@@ -1232,6 +1296,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   shutdown() {
+    this.scale.off(Phaser.Scale.Events.RESIZE, this._layoutSafeHud, this);
     this.battleCamera?.reset();
     this.battleCamera = null;
     this.stormView?.destroy();
