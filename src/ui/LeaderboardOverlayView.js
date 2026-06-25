@@ -1,6 +1,12 @@
 import Phaser from 'phaser';
 import { createPillButton } from './phaserUi.js';
-import { formatLeaderboardLines, getLeaderboard } from '../core/Leaderboard.js';
+import {
+  formatLeaderboardLines,
+  formatPlayerBestLine,
+  getLeaderboard,
+  getPlayerBest,
+  getPlayerName,
+} from '../core/Leaderboard.js';
 
 const SCROLL_PX_PER_SEC = 22;
 
@@ -43,8 +49,21 @@ export class LeaderboardOverlayView {
       .setOrigin(0.5, 0);
     this.root.add(title);
 
-    const scrollTop = panelTop + 48;
-    const scrollH = panelH - 100;
+    const bestLine = formatPlayerBestLine(getPlayerBest(), getPlayerName());
+    const subtitle = scene.add
+      .text(w / 2, panelTop + 40, bestLine, {
+        fontFamily: 'system-ui, sans-serif',
+        fontSize: '10px',
+        fontStyle: 'bold',
+        color: '#1B7F4A',
+        align: 'center',
+        wordWrap: { width: w - 48 },
+      })
+      .setOrigin(0.5, 0);
+    this.root.add(subtitle);
+
+    const scrollTop = panelTop + 62;
+    const scrollH = panelH - 114;
     const maskShape = scene.make.graphics({ x: 0, y: 0, add: false });
     maskShape.fillStyle(0xffffff);
     maskShape.fillRect(22, scrollTop, w - 44, scrollH);

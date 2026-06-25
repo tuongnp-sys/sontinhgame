@@ -46,6 +46,7 @@ export class HowToPlayScene extends Phaser.Scene {
       '  x10 Rooster | x25 Elephant | x50 Horse',
       '',
       'Blue sea beasts climb the flood (pressure only).',
+      'Set your name on the menu to save personal best.',
       'Ink blind & flash floods appear in later rounds.',
       '',
       'WIN: survive the timer with mountain above water.',

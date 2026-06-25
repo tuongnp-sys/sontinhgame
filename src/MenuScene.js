@@ -7,6 +7,8 @@ import { createArcadeTitle, createPillButton } from './ui/phaserUi.js';
 import { createMuteToggle } from './ui/MuteToggle.js';
 import { LegendSummaryView } from './ui/LegendSummaryView.js';
 import { LeaderboardOverlayView } from './ui/LeaderboardOverlayView.js';
+import { getPlayerName } from './core/Leaderboard.js';
+import { ensurePlayerName, showPlayerNameModal } from './ui/playerNameDom.js';
 
 /**
  * MenuScene — compact menu, leaderboard overlay.
@@ -50,9 +52,13 @@ export class MenuScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setShadow(1, 1, '#ffffff', 2, true, true);
 
+    this._buildPlayerRow(w, h);
     this._buildLeaderboardButton(w, h);
 
     createPillButton(this, w / 2, h * 0.62, 220, 52, 'BEGIN', async () => {
+      const name = await ensurePlayerName();
+      if (!name) return;
+      this._refreshPlayerLabel();
       const hasBgm = bgmController.isTrackReady('gameplay');
       await audioManager.unlock({ proceduralMusic: !hasBgm });
       if (this.sound.context?.state === 'suspended') {
@@ -104,6 +110,57 @@ export class MenuScene extends Phaser.Scene {
     createMuteToggle(this, w - 22, 28, 25);
 
     bgmController.play(this, 'menu');
+  }
+
+  /**
+   * @param {number} w
+   * @param {number} h
+   */
+  _buildPlayerRow(w, h) {
+    const rowY = h * 0.175;
+
+    this.playerLabel = this.add
+      .text(w / 2, rowY, this._playerLabelText(), {
+        fontFamily: 'system-ui, sans-serif',
+        fontSize: '12px',
+        fontStyle: 'bold',
+        color: '#1B7F4A',
+      })
+      .setOrigin(0.5)
+      .setShadow(1, 1, '#ffffff', 2, true, true);
+
+    const changeBg = this.add
+      .rectangle(w / 2, rowY + 22, 120, 26, 0xffffff, 0.65)
+      .setStrokeStyle(2, 0x1b7f4a, 0.85)
+      .setInteractive({ useHandCursor: true });
+
+    const changeBtn = this.add
+      .text(w / 2, rowY + 22, 'CHANGE NAME', {
+        fontFamily: 'system-ui, sans-serif',
+        fontSize: '10px',
+        fontStyle: 'bold',
+        color: '#1B7F4A',
+      })
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true });
+
+    const openName = async () => {
+      const saved = await showPlayerNameModal({ title: 'Change player name' });
+      if (saved) this._refreshPlayerLabel();
+    };
+    changeBg.on('pointerdown', openName);
+    changeBtn.on('pointerdown', openName);
+    changeBg.on('pointerover', () => changeBg.setFillStyle(0xffffff, 0.9));
+    changeBg.on('pointerout', () => changeBg.setFillStyle(0xffffff, 0.65));
+  }
+
+  _playerLabelText() {
+    const name = getPlayerName();
+    return name ? `Playing as: ${name}` : 'Tap BEGIN to enter your name';
+  }
+
+  _refreshPlayerLabel() {
+    this.playerLabel?.setText(this._playerLabelText());
   }
 
   /**

@@ -7,6 +7,7 @@ import { GameOverScene } from './GameOverScene.js';
 import { platform } from '../platform/index.js';
 import { registerGameAccessor, enterSystemPause, exitSystemPause } from './systemPause.js';
 import { shouldResumeGameplay } from './gameSession.js';
+import { bindScaleRefresh } from './scaleRefit.js';
 
 /** @type {Phaser.Game|null} */
 let game = null;
@@ -26,8 +27,9 @@ export function initGame() {
     parent: 'game-container',
     backgroundColor: '#87CEEB',
     scale: {
-      mode: Phaser.Scale.FIT,
+      mode: Phaser.Scale.EXPAND,
       autoCenter: Phaser.Scale.CENTER_BOTH,
+      autoRound: true,
     },
     scene: [BootScene, MenuScene, HowToPlayScene, GameScene, GameOverScene],
     audio: {
@@ -41,6 +43,7 @@ export function initGame() {
 
   game = new Phaser.Game(config);
   registerGameAccessor(() => game);
+  bindScaleRefresh(game);
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {

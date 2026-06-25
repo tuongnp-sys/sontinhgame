@@ -11,7 +11,7 @@ import { platform } from '../platform/index.js';
 import { SceneryView } from './systems/SceneryView.js';
 import palettes from './data/palettes.json';
 import { hexToNum } from './ui/phaserUi.js';
-import { addLeaderboardEntry } from './core/Leaderboard.js';
+import { addLeaderboardEntry, getPlayerName } from './core/Leaderboard.js';
 import { StormView } from './systems/StormView.js';
 import { LightningView } from './systems/LightningView.js';
 import { CharmThrowView } from './systems/CharmThrowView.js';
@@ -821,6 +821,7 @@ export class GameScene extends Phaser.Scene {
       const survived = Math.floor(state.elapsed);
       const finalScore = state.computeFinalScore();
       const { rank } = addLeaderboardEntry({
+        playerName: getPlayerName(),
         timeSurvived: survived,
         victory,
         score: finalScore,
